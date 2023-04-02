@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+<body>
+<th:block th:if="${status == 0}">
+    <h3>Add Picture</h3>
+</th:block>
+<th:block th:unless="${status == 0}">
+    <h3>Edit Picture</h3>
+</th:block>
+<p>
+    <a th:href="@{/picture/}">
+        Back to picture list
+    </a>
+</p>
+<div id="form">
+    <form th:action="@{/picture/updatePicture}" th:object="${picture}"
+          th:method="POST" novalidate="novalidate">
+        <input type="hidden" th:field="*{id}"/>
+        <div>
+            <label>Picture Code</label>
+            <input type="text" th:field="*{pictureCode}"/>
+        </div>
+        <div>
+            <label>Picture Name</label>
+            <input type="text" th:field="*{pictureName}"/>
+        </div>
+        <div>
+            <label>Picture Width</label>
+            <input type="number" th:field="*{pictureWidth}"/>
+            <th:block th:if="${#fields.hasErrors('pictureWidth')}" th:errors="*{pictureWidth}"></th:block>
+        </div>
+        <div>
+            <label>Picture Height</label>
+            <input type="number" th:field="*{pictureHeight}"/>
+            <th:block th:if="${#fields.hasErrors('pictureHeight')}" th:errors="*{pictureHeight}"></th:block>
+        </div>
+        <div>
+            <label>Picture Price</label>
+            <input type="number" th:field="*{picturePrice}"/>
+            <th:block th:if="${#fields.hasErrors('picturePrice')}" th:errors="*{picturePrice}"></th:block>
+        </div>
+        <div>
+            <label>Picture Describe</label>
+            <textarea rows="5" cols="20" th:field="*{pictureDescribe}"></textarea>
+        </div>
+        <div>
+            <label>Picture Material</label>
+            <input type="text" th:field="*{pictureMaterial}"/>
+        </div>
+        <select th:field="*{pictureCategoriesId}">
+             <option th:each="p : ${pictureCategories}" th:text="${p.categoriesName}" th:value="${p.id}"></option>
+        </select>
+        <th:block th:if="${status == 0}">
+            <input type="submit" value="Add"/>
+        </th:block>
+        <th:block th:unless="${status == 0}">
+            <input type="submit" value="Edit"/>
+        </th:block>
+    </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

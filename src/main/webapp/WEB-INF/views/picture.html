@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3>Pictures</h3>
+<p>
+    <a th:href="@{/picture/create}">
+        Add new Picture
+    </a>
+</p>
+
+<table id = "pictures">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>PictureCode</th>
+        <th>PictureName</th>
+        <th>PictureHeight</th>
+        <th>PictureWidth</th>
+        <th>pictureMaterial</th>
+        <th>pictureDescribe</th>
+        <th>picturePrice</th>
+        <th>pictureCategories</th>
+        <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="p : ${pictures}">
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.pictureCode}"></td>
+        <td th:text="${p.pictureName}"></td>
+        <td th:text="${p.pictureHeight}"></td>
+        <td th:text="${p.pictureWidth}"></td>
+        <td th:text="${p.pictureMaterial}"></td>
+        <td th:text="${p.pictureDescribe}"></td>
+        <td th:text="${p.picturePrice}"></td>
+        <th:block th:each="c: ${p.pictureCategories}">
+            <td th:text="${c.categoriesName}"></td>
+        </th:block>
+        <td><a th:href="@{/picture/{id}/edit(id=${p.id})}">edit</a></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
