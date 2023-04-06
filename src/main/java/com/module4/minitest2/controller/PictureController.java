@@ -98,4 +98,13 @@ public class PictureController
         pictureService.delete(picture);
         return "redirect:/picture/";
     }
+
+    @PostMapping("/searchByPictureName")
+    public ModelAndView searchByName(@RequestParam("search") List<Picture> pictureListSearch )
+    {
+         ModelAndView modelAndView = new ModelAndView();
+         modelAndView.addObject("pictures", pictureListSearch);
+         modelAndView.setViewName("/picture");
+         return modelAndView;
+    }
 }

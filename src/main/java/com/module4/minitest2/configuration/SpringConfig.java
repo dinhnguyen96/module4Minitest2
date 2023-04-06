@@ -3,6 +3,7 @@ package com.module4.minitest2.configuration;
 
 import com.module4.minitest2.formatter.PictureCategoriesFormatter;
 import com.module4.minitest2.formatter.PictureFormater;
+import com.module4.minitest2.formatter.PictureSearchFormmater;
 import com.module4.minitest2.service.CategoriesService;
 import com.module4.minitest2.service.PictureService;
 import org.springframework.beans.BeansException;
@@ -138,6 +139,9 @@ public class SpringConfig extends WebMvcConfigurerAdapter  implements Applicatio
 
         PictureCategoriesFormatter pictureCategoriesFormatter = new PictureCategoriesFormatter(this.applicationContext.getBean(CategoriesService.class));
         registry.addFormatter(pictureCategoriesFormatter);
+
+        PictureSearchFormmater pictureSearchFormmater = new PictureSearchFormmater(this.applicationContext.getBean(PictureService.class));
+        registry.addFormatter(pictureSearchFormmater);
 
     }
 

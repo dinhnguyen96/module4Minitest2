@@ -23,4 +23,5 @@ public interface PictureService {
     void delete(Picture picture);
 
 
+
 }
