@@ -14,8 +14,8 @@
     </a>
 </p>
 <div id="form">
-    <form th:action="@{/picture/updatePicture}" th:object="${picture}"
-          th:method="POST" novalidate="novalidate">
+    <form th:action="@{'/picture/updatePicture?status='+${status}}" th:object="${picture}"
+          th:method="POST">
         <input type="hidden" th:field="*{id}"/>
         <div>
             <label>Picture Code</label>
@@ -48,8 +48,8 @@
             <label>Picture Material</label>
             <input type="text" th:field="*{pictureMaterial}"/>
         </div>
-        <select th:field="*{pictureCategoriesId}">
-             <option th:each="p : ${pictureCategories}" th:text="${p.categoriesName}" th:value="${p.id}"></option>
+        <select th:field="*{pictureCategories}" multiple="multiple">
+             <option th:each="p : ${categories}" th:text="${p.categoriesName}" th:value="${p.id}"></option>
         </select>
         <th:block th:if="${status == 0}">
             <input type="submit" value="Add"/>

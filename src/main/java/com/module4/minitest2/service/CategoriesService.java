@@ -7,4 +7,7 @@ import java.util.List;
 public interface CategoriesService {
 
     List<Categories> findAll();
+
+
+    Categories findbyId(Long id);
 }

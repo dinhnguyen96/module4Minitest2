@@ -6,6 +6,7 @@ import com.module4.minitest2.service.CategoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -16,5 +17,10 @@ public class CategoriesServiceImpl implements CategoriesService {
     @Override
     public List<Categories> findAll() {
         return categoriesRepository.findAll();
+    }
+
+    @Override
+    public Categories findbyId(Long id) {
+        return categoriesRepository.findCategoriesByID(id);
     }
 }

@@ -16,5 +16,11 @@ public interface PictureService {
 
     List<Picture> searchByCategoriesName(String categoriesName);
 
+    void add(Picture picture);
+
+    void update(Picture picture);
+
+    void delete(Picture picture);
+
 
 }

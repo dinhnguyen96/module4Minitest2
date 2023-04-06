@@ -6,6 +6,7 @@ import com.module4.minitest2.service.PictureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 
@@ -35,5 +36,21 @@ public class PictureServiceImpl implements PictureService
     @Override
     public List<Picture> searchByCategoriesName(String categoriesName) {
         return pictureRepository.searchByCategoriesName(categoriesName);
+    }
+
+    @Override
+    public void add(Picture picture)
+    {
+        pictureRepository.save(picture);
+    }
+
+    @Override
+    public void update(Picture picture) {
+        pictureRepository.save(picture);
+    }
+
+    @Override
+    public void delete(Picture picture) {
+          pictureRepository.delete(picture);
     }
 }

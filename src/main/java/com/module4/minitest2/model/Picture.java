@@ -33,7 +33,7 @@ public class Picture implements Serializable
 
     private List<Categories> pictureCategories;
 
-    private Long pictureCategoriesId;
+
 
 
     public Picture()
@@ -70,7 +70,7 @@ public class Picture implements Serializable
         this.pictureName = pictureName;
     }
 
-    @Min(value = 0, message = "Picture.pictureHeight.Min")
+    @Min(value = 0, message = "{pictureHeight.Min}")
     @Column(name = "pictureHeight")
     public double getPictureHeight()
     {
@@ -82,7 +82,7 @@ public class Picture implements Serializable
         this.pictureHeight = pictureHeight;
     }
 
-    @Min(value = 0, message = "Picture.pictureWidth.Min")
+    @Min(value = 0, message = "{pictureWidth.Min}")
     @Column(name = "pictureWidth")
     public double getPictureWidth()
     {
@@ -111,7 +111,7 @@ public class Picture implements Serializable
         this.pictureDescribe = pictureDescribe;
     }
 
-    @Min(value = 0, message = "Picture.picturePrice.Min")
+    @Min(value = 0, message = "{picturePrice.Min}")
     @Column(name = "picturePrice")
     public double getPicturePrice() {
         return picturePrice;
@@ -121,9 +121,9 @@ public class Picture implements Serializable
         this.picturePrice = picturePrice;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "picture_categories", joinColumns = @JoinColumn(name = "pictureId" ),
-                 inverseJoinColumns = @JoinColumn(name="categoriesId"))
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "picture_categories", joinColumns = @JoinColumn(name = "pictureId", referencedColumnName = "Id"),
+            inverseJoinColumns = @JoinColumn(name="categoriesId", referencedColumnName = "Id"))
     public List<Categories> getPictureCategories() {
         return pictureCategories;
     }
@@ -132,14 +132,4 @@ public class Picture implements Serializable
         this.pictureCategories = pictureCategories;
     }
 
-
-    @Transient
-    public Long getPictureCategoriesId() {
-        return pictureCategoriesId;
-    }
-
-    public void setPictureCategoriesId(Long pictureCategoriesId)
-    {
-        this.pictureCategoriesId = pictureCategoriesId;
-    }
 }

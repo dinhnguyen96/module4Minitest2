@@ -1,7 +1,9 @@
 package com.module4.minitest2.configuration;
 
 
+import com.module4.minitest2.formatter.PictureCategoriesFormatter;
 import com.module4.minitest2.formatter.PictureFormater;
+import com.module4.minitest2.service.CategoriesService;
 import com.module4.minitest2.service.PictureService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -133,13 +135,17 @@ public class SpringConfig extends WebMvcConfigurerAdapter  implements Applicatio
     {
         PictureFormater pictureFormater = new PictureFormater(this.applicationContext.getBean(PictureService.class));
         registry.addFormatter(pictureFormater);
+
+        PictureCategoriesFormatter pictureCategoriesFormatter = new PictureCategoriesFormatter(this.applicationContext.getBean(CategoriesService.class));
+        registry.addFormatter(pictureCategoriesFormatter);
+
     }
 
-    //custome check
-//    @Bean
-//    public MessageSource messageSource() {
-//        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-//        messageSource.setBasenames("message");
-//        return messageSource;
-//    }
+    @Bean
+    public MessageSource getMessageSource()
+    {
+       ResourceBundleMessageSource resourceBundleMessageSource  = new ResourceBundleMessageSource();
+       resourceBundleMessageSource.setBasenames("messages");
+       return resourceBundleMessageSource;
+    }
 }

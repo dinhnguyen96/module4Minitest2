@@ -17,7 +17,7 @@ public class PictureFormater implements Formatter<Picture>
     }
 
     @Override
-    public Picture parse(String text, Locale locale) throws ParseException
+    public Picture parse(String text, Locale locale)
     {
         return pictureService.findById(Long.parseLong(text));
     }
